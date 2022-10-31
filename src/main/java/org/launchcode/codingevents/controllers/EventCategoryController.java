@@ -23,23 +23,22 @@ public class EventCategoryController {
     @Autowired
     private EventCategoryRepository eventCategoryRepository;
 
-    @PostMapping
-    public String displayAllEvents(Model model) {
-        model.addAttribute("title", "All Categories");
-        model.addAttribute("Categories", eventCategoryRepository.findAll());
-        return "eventCategories/index";
-    };
-
     @GetMapping
+    public String displayAllCategories(Model model) {
+        model.addAttribute("title", "All Categories");
+        model.addAttribute("categories", eventCategoryRepository.findAll());
+        return "eventCategories/index";
+    }
+
+    @GetMapping("create")
     public String renderCreateEventCategoryForm(Model model) {
         model.addAttribute("title", "Create Category");
         model.addAttribute(new EventCategory());
-       // model.addAttribute("types", EventType.values());
-        return "eventsCategories/create";
+        return "eventCategories/create";
     }
-
     @PostMapping("create")
-    public String processCreateEventCategoryForm(@Valid @ModelAttribute EventCategory eventCategory, Errors errors, Model model) {
+    public String processCreateEventCategoryForm(@Valid @ModelAttribute EventCategory eventCategory,
+                                                 Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Category");
