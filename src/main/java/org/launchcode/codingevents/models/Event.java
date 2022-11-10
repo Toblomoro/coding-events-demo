@@ -1,5 +1,7 @@
 package org.launchcode.codingevents.models;
 
+import org.hibernate.event.spi.EventType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
